@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './containers/App';
+import MapProvider from './providers/MapProvider';
 import reportWebVitals from './reportWebVitals';
 import './styles/tailwind.css';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MapProvider>
+      <App />
+    </MapProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
