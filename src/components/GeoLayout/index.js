@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
 import { useMapContext } from '../../providers/MapProvider';
 import ToolTip from '../ToolTip';
+import Loader from '../Loader';
+
+const layoutStyle = { color: '#64748B', fillOpacity: 0.1, weight: 1.35 };
 
 const GeoLayout = () => {
   const [feature, setFeature] = useState();
@@ -11,16 +14,13 @@ const GeoLayout = () => {
     setFeature(layer);
   };
   if (!area) {
-    return (
-      <div className="flex justify-center items-center">
-        <h1 className="font-poppins">Loading....</h1>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
     <GeoJSON
       data={area}
+      style={layoutStyle}
       eventHandlers={{
         mouseover: handleMouseOver,
       }}
