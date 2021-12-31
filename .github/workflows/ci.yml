@@ -3,8 +3,6 @@ name: Deploy draft on PR
 on:
   pull_request:
     branches: [develop]
-  push:
-    branches: [develop]
 
 jobs:
   build-and-deploy:
@@ -32,6 +30,8 @@ jobs:
       #   run: yarn test
 
       - name: Build
+        env:
+          REACT_APP_KYUPID_API: ${{secrets.REACT_APP_KYUPID_API}}
         run: yarn build
 
       - name: Deploy draft to Netlify
